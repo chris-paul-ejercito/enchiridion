@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/chris-paul-ejercito/codesmith-solo-project/issues"
   },
-  "homepage": "https://github.com/chris-paul-ejercito/codesmith-solo-project#readme"
+  "homepage": "https://github.com/chris-paul-ejercito/codesmith-solo-project#readme",
+  "dependencies": {
+    "webpack": "^5.28.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.23.0"
+  }
 }
