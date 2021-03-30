@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/chris-paul-ejercito/codesmith-solo-project#readme",
   "dependencies": {
+    "react": "^17.0.2",
     "webpack": "^5.28.0"
   },
   "devDependencies": {
