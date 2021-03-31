@@ -25,6 +25,18 @@ class InitiativeForm extends Component {
     const { name, initiative } = this.state;
     console.log(name, initiative);
     event.preventDefault();
+    fetch('/api/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'Application/JSON',
+      },
+      body: JSON.stringify({ name, initiative }),
+    })
+      .then(res => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch(err => console.log('could not send to server'));
   }
 
   render() {
@@ -35,13 +47,16 @@ class InitiativeForm extends Component {
           <input
             name="name"
             type="text"
-            value={this.state.value}
+            value={this.state.name}
             onChange={this.handleChangeName}
           />
+        </label>
+        <label>
+          Initiative:
           <input
             name="initiative"
             type="number"
-            value={this.state.value}
+            value={this.state.initiative}
             onChange={this.handleChangeInitiative}
           />
         </label>
