@@ -5,14 +5,13 @@ const initiativeController = require('../controllers/initiativeController.js');
 const router = express.Router();
 
 router.get('/',
-  initiativeController.getTest, (req, res) => {
-    console.log('api router get', res.locals.creatures);
+  initiativeController.getCreatures, (req, res) => {
     res.status(200).json(res.locals.creatures);
   });
 
 router.post('/',
-  initiativeController.postTest, (req, res) => {
-    res.status(200).json({ test: '/api POST' });
+  initiativeController.postCreature, (req, res) => {
+    res.status(200).json(res.locals.inserted);
   });
 
 module.exports = router;

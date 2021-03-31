@@ -24,7 +24,6 @@ class InitiativeForm extends Component {
 
   handleSubmit(event) {
     const { name, initiative } = this.state;
-    console.log(name, initiative);
     event.preventDefault();
     fetch('/api/', {
       method: 'POST',
@@ -33,7 +32,7 @@ class InitiativeForm extends Component {
       },
       body: JSON.stringify({ name, initiative }),
     })
-      .then(res => res.json())
+      .then((res) => res.json())
       .then((data) => {
         console.log(data);
       })
