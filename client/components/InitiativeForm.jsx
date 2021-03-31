@@ -11,6 +11,7 @@ class InitiativeForm extends Component {
     this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeInitiative = this.handleChangeInitiative.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleTest = this.handleTest.bind(this);
   }
 
   handleChangeName(event) {
@@ -36,12 +37,28 @@ class InitiativeForm extends Component {
       .then((data) => {
         console.log(data);
       })
-      .catch(err => console.log('could not send to server'));
+      .catch(err => console.log('could not send to server', err));
+  }
+
+  handleTest(event) {
+    event.preventDefault();
+    fetch('/api/', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'Application/JSON',
+      },
+    })
+      .then(res => res.json())
+      .then((data) => {
+        console.log('handleTest', data);
+      })
+      .catch(err => console.log('could not GET from server', err));
   }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
+        <button type="button" onClick={this.handleTest}>Test GET</button>
         <label>
           Name:
           <input
