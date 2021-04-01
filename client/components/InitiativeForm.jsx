@@ -57,7 +57,7 @@ class InitiativeForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <button type="button" onClick={this.handleTest}>Test GET</button>
+        <h3>Initiative Form</h3>
         <label>
           Name:
           <input
@@ -67,16 +67,19 @@ class InitiativeForm extends Component {
             onChange={this.handleChangeName}
           />
         </label>
-        <label>
-          Initiative:
-          <input
-            name="initiative"
-            type="number"
-            value={this.state.initiative}
-            onChange={this.handleChangeInitiative}
-          />
-        </label>
-        <input type="submit" value="Submit" />
+        <div>
+          <label>
+            Initiative:
+            <input
+              name="initiative"
+              type="number"
+              value={this.state.initiative}
+              onChange={this.handleChangeInitiative}
+            />
+          </label>
+        </div>
+        <div><input type="submit" value="Submit" /></div>
+        <div><button type="button" onClick={this.handleTest}>Test GET</button></div>
       </form>
     );
   }
