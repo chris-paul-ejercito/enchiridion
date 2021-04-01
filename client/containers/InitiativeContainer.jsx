@@ -2,25 +2,22 @@ import React, { Component, useState } from 'react';
 import InitiativeForm from '../components/InitiativeForm.jsx';
 import InitiativesDisplay from '../components/InitiativesDisplay.jsx';
 
-class InitiativeContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      creatures: [],
-      form: {
-        name: '',
-        initiative: 0,
-      },
-    };
-  }
+const InitiativeContainer = function(props) {
+  const [creatures, setCreatures] = useState([]);
+  const [name, setName] = useState('');
+  const [initiative, setInitiative] = useState(0);
 
-  render() {
-    const { creatures } = this.state;
+  // render() {
     return (
       <div>
         <h2>Initiative Container</h2>
         <div>
-          <InitiativeForm />
+          <InitiativeForm
+            name={name}
+            creatures={creatures}
+            setName={setName}
+            setInitiative={setInitiative}
+          />
         </div>
         <div>
           <InitiativesDisplay
@@ -29,7 +26,7 @@ class InitiativeContainer extends Component {
         </div>
       </div>
     );
-  }
+  // }
 };
 
 export default InitiativeContainer;

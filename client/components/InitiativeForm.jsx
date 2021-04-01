@@ -1,29 +1,29 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 
-class InitiativeForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: '',
-      initiative: 0,
-    };
+const InitiativeForm = function(props) {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     name: '',
+  //     initiative: 0,
+  //   };
 
-    this.handleChangeName = this.handleChangeName.bind(this);
-    this.handleChangeInitiative = this.handleChangeInitiative.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleTest = this.handleTest.bind(this);
-  }
+  //   this.handleChangeName = this.handleChangeName.bind(this);
+  //   this.handleChangeInitiative = this.handleChangeInitiative.bind(this);
+  //   this.handleSubmit = this.handleSubmit.bind(this);
+  //   this.handleTest = this.handleTest.bind(this);
+  // }
 
-  handleChangeName(event) {
-    this.setState({ name: event.target.value });
-  }
+  // handleChangeName(event) {
+  //   this.setState({ name: event.target.value });
+  // }
 
-  handleChangeInitiative(event) {
-    this.setState({ initiative: event.target.value });
-  }
+  // handleChangeInitiative(event) {
+  //   this.setState({ initiative: event.target.value });
+  // }
 
-  handleSubmit(event) {
-    const { name, initiative } = this.state;
+  const handleSubmit = (event) => {
+    const { name, initiative } = props;
     event.preventDefault();
     fetch('/api/', {
       method: 'POST',
@@ -37,9 +37,9 @@ class InitiativeForm extends Component {
         console.log(data);
       })
       .catch(err => console.log('could not send to server', err));
-  }
+  };
 
-  handleTest(event) {
+  const handleTest = (event) => {
     event.preventDefault();
     fetch('/api/', {
       method: 'GET',
@@ -50,21 +50,22 @@ class InitiativeForm extends Component {
       .then(res => res.json())
       .then((data) => {
         console.log('handleTest', data);
+        // console.log('creatures', props.creatures);
+        console.log('props.name', props.name);
       })
       .catch(err => console.log('could not GET from server', err));
-  }
+  };
 
-  render() {
+  // render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <h3>Initiative Form</h3>
         <label>
           Name:
           <input
             name="name"
             type="text"
-            value={this.state.name}
-            onChange={this.handleChangeName}
+            onChange={(event) => props.setName(event.target.value)}
           />
         </label>
         <div>
@@ -73,16 +74,16 @@ class InitiativeForm extends Component {
             <input
               name="initiative"
               type="number"
-              value={this.state.initiative}
-              onChange={this.handleChangeInitiative}
+              value={props.initiative}
+              onChange={props.setInitiative}
             />
           </label>
         </div>
         <div><input type="submit" value="Submit" /></div>
-        <div><button type="button" onClick={this.handleTest}>Test GET</button></div>
+        <div><button type="button" onClick={handleTest}>Test GET</button></div>
       </form>
     );
-  }
+  // }
 }
 
 export default InitiativeForm;
