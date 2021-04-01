@@ -1,14 +1,35 @@
 import React from 'react';
 
-function CreatureDisplay(props) {
-  const { name, dmgtaken, ac } = props;
+const CreatureDisplay = (props) => {
+  const { name, dmgtaken, ac, _id} = props;
+  // console.log(_id);
+
+  const deleteCreature = (event) => {
+    event.preventDefault();
+    fetch('/api/', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'Application/JSON',
+      },
+      body: JSON.stringify({ _id }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('deleteCreature', data);
+      })
+      .catch(err => console.log('could not delete creature ', name, err));
+  };
+
   return (
     <div>
+      <h4>{name}</h4>
+      <h5>Damage Taken: </h5>
+      {dmgtaken}
+      <h5>AC: </h5>
+      {ac}
       <div>
-        <h4>{name}</h4>
+        <button type="button" onClick={deleteCreature}>DELETE</button>
       </div>
-      <div>{dmgtaken}</div>
-      <div>{ac}</div>
     </div>
   );
 }

@@ -14,4 +14,9 @@ router.post('/',
     res.status(200).json(res.locals.inserted);
   });
 
+router.delete('/',
+  initiativeController.deleteCreature, (req, res) => {
+    res.status(200).json(res.locals.deleted);
+  });
+
 module.exports = router;
