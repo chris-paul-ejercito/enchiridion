@@ -18,6 +18,7 @@ const InitiativeContainer = (props) => {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log('getCreatures data', data);
         setCreatures(data);
       })
       .catch(err => console.log('could not GET from server', err));
@@ -36,9 +37,9 @@ const InitiativeContainer = (props) => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        getCreatures();
       })
       .catch(err => console.log('could not POST to server', err));
-    getCreatures();
   };
 
   const updateCreature = (event, _id, column) => {
@@ -58,9 +59,9 @@ const InitiativeContainer = (props) => {
       .then((res) => res.json())
       .then((data) => {
         console.log('updateCreature', data);
+        getCreatures();
       })
       .catch(err => console.log('could not update creature ', name, err));
-    getCreatures();
   };
 
   const deleteCreature = (event, _id) => {
@@ -75,9 +76,9 @@ const InitiativeContainer = (props) => {
       .then((res) => res.json())
       .then((data) => {
         console.log('deleteCreature', data);
+        getCreatures();
       })
       .catch(err => console.log('could not delete creature ', name, err));
-    getCreatures();
   };
 
   useEffect(() => {
