@@ -6,10 +6,10 @@ const InitiativesDisplay = (props) => {
   // constructor(props) {
   //   super(props);
   // }
-  const { creatures } = props;
+  const { creatures, deleteCreature, updateCreature } = props;
   const initiatives = new Set();
 
-  const test = creatures.reduce((accumulator, creature) => {
+  const creatureComponents = creatures.reduce((accumulator, creature) => {
     initiatives.add(creature.initiative);
     const {
       _id, name, dmgtaken, ac, initiative,
@@ -21,6 +21,8 @@ const InitiativesDisplay = (props) => {
         name={name}
         dmgtaken={dmgtaken}
         ac={ac}
+        deleteCreature={deleteCreature}
+        updateCreature={updateCreature}
       />
     );
     if (!Object.prototype.hasOwnProperty.call(accumulator, initiative)) {
@@ -36,7 +38,7 @@ const InitiativesDisplay = (props) => {
       key={`init_${initiative}`}
       initiative={initiative}
     >
-      {test[initiative]}
+      {creatureComponents[initiative]}
     </Initiative>
   ));
 
@@ -46,7 +48,6 @@ const InitiativesDisplay = (props) => {
       {initiativeComponents}
     </div>
   );
-  // }
-}
+};
 
 export default InitiativesDisplay;

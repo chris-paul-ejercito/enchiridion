@@ -61,4 +61,27 @@ initiativeController.deleteCreature = (req, res, next) => {
     });
 };
 
+initiativeController.updateCreature = (req, res, next) => {
+  const { _id, column, value } = req.body;
+  const query = `UPDATE "public"."creatures" SET ${column}=${value} WHERE _id=(${_id}) RETURNING *;`;
+  // console.log('updateCreature query', query);
+  // res.locals.patched = { patched: 'patched' };
+  // next();
+  db
+    .query(query)
+    .then((data) => {
+      console.log('patchCreature rows RETURNING *', data.rows);
+      [res.locals.patched] = data.rows;
+      console.log('res.locals.patched', res.locals.patched);
+      next();
+    })
+    .catch((err) => {
+      next({
+        log: 'error occurred in initiativeController.patchCreature',
+        status: 500,
+        message: { error: err },
+      });
+    });
+};
+
 module.exports = initiativeController;

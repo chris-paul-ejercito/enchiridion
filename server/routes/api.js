@@ -19,4 +19,9 @@ router.delete('/',
     res.status(200).json(res.locals.deleted);
   });
 
+router.patch('/',
+  initiativeController.updateCreature, (req, res) => {
+    res.status(200).json(res.locals.patched);
+  });
+
 module.exports = router;

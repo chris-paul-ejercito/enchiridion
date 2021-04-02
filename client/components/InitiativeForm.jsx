@@ -27,7 +27,7 @@ const InitiativeForm = function(props) {
         </label>
       </div>
       <div><input type="submit" value="Submit" /></div>
-      <div><button type="button" onClick={(event) => getCreatures(event)}>Test GET</button></div>
+      {/* <div><button type="button" onClick={(event) => getCreatures(event)}>Test GET</button></div> */}
     </form>
   );
 };
